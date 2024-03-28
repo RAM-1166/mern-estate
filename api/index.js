@@ -17,3 +17,13 @@ app.listen(3000,() =>{
 );
 app.use('/api/user',userRouter);
 app.use('/api/auth',authRouter);
+
+app.use((err,req,res,next)=>{ //middlewware creation to reduce the size of duplicate blocks
+    const statuscode=err.statuscode || 500;
+    const message =err.message || 'Internal Server message ';
+    return res.status(statuscode).json({
+        success:false,
+        statuscode,
+        message,
+    });
+});
