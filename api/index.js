@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 dotenv.config();
@@ -20,7 +20,7 @@ app.use('/api/auth',authRouter);
 
 app.use((err,req,res,next)=>{ //middlewware creation to reduce the size of duplicate blocks
     const statuscode=err.statuscode || 500;
-    const message =err.message || 'Internal Server message ';
+    const message =err.message || 'Internal Server Error';
     return res.status(statuscode).json({
         success:false,
         statuscode,
